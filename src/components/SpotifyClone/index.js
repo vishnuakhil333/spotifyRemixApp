@@ -21,12 +21,17 @@ class SpotifyClone extends Component {
     this.getTheData()
   }
 
+  /*
+    This is method is used to fetch playlist data
+  */
   getTheData = async () => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
     const country = localStorage.getItem('country', '')
     const token = localStorage.getItem('pa_token', '')
 
     const timeStamp = moment(new Date()).format('YYYY-MM-DDTHH:00:00')
+
+    //Error occurred at this line access token expired......Also as this is Implicit flow there are no refresh tokens available
     const apiUrl = `https://api.spotify.com/v1/browse/featured-playlists?country=${country}&timestamp=${timeStamp}`
     // const apiUrl = `https://api.spotify.com/v1/browse/featured-playlists`
     const options = {
